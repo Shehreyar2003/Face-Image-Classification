@@ -1,0 +1,98 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML IMAGE Classification</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename ='Main.css') }}" />
+  <link rel="shortcut icon" href="../static/TitleIcon.png" type="image/x-icon" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<script>
+  function showloading() {
+    image = document.getElementById('loading_image');
+    image.style.display = 'inline'
+  }
+
+  const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-button");
+    const customTxt = document.getElementById("custom-text");
+    customBtn.addEventListener("click", function () {
+      realFileBtn.click();
+    });
+    realFileBtn.addEventListener("change", function () {
+      if (realFileBtn.value) {
+        customTxt.innerHTML = realFileBtn.value.match(
+          /[\/\\]([\w\d\s\.\-\(\)]+)$/
+        )[1];
+      } else {
+        customTxt.innerHTML = "No file chosen, yet.";
+      }
+    });
+</script>
+
+<body>
+  <header>
+    <div class="TopImg">
+      <img class="text-left TopImage" src="../static/MainIcon.png" alt="mainImage" height="70px" />
+    </div>
+  </header>
+  <h1 class="MainHeading"> <span style="font-family: 'Alfa Slab One', cursive; font-size: 8rem; background-color: rgb(199, 41, 41); padding: 10px 20px; border-radius: 7px;">IMAGE</span> Classification</h1>
+
+  <h3 class="Notes">
+    PLease Select an Image as input for this Model To validate the OUTPUT
+  </h3>
+  <form class="ImageInput" action="/predict" method="post" enctype="multipart/form-data" onsubmit="showloading()">
+
+    <input type="file" name="file" id="file" class="btn btn-lg btn-outline-success btn-primary " />
+
+    <input id="file" style="margin: 15px; width:250px" type="submit" value="Analyse" class="btn btn-lg "/>
+  </form>
+
+  <div style="display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;">
+    <div class="image_Preview" id="ImagePreview">
+      <img src="{{user_image}}" alt="ImagePreview" class="Preview_Here">
+      <span class="Default_text">Image Preview</span>
+    </div>
+      <img style="display: none; height: 150px; width: 150px;  " id="loading_image" src="static/images/Loading.gif">
+    
+  </div>
+  <script>
+    const inputFile = document.getElementById("file");
+    const PreviewContainer = document.getElementById("ImagePreview")
+    const PrevImage = PreviewContainer.querySelector(".Preview_Here")
+    const PrevDefaultText = PreviewContainer.querySelector(".Default_text")
+    inputFile.addEventListener("change", function () {
+      const File = this.files[0]
+
+      if (File) {
+        const reader = new FileReader();
+
+        PrevDefaultText.style.display = "none";
+        PrevImage.style.display = "block";
+
+        reader.addEventListener("load", function () {
+          PrevImage.setAttribute("src", this.result);
+
+        });
+        reader.readAsDataURL(File)
+      } else {
+        PrevDefaultText.style.display = null;
+        PrevImage.style.display = null;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

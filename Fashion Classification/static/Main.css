@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: #fff;
+	/* text-align: center; */
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 75%, #000000 100%),
+		url("../static/BackGround.jpg");
+	margin-top: 50px;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.ImageInput {
+	margin: 25px;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	outline: none;
+}
+
+.TopImg {
+	margin: 25px;
+}
+.TopImage {
+	background-color: #ffffffe7;
+	border-radius: 10px;
+}
+
+.Notes {
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+}
+.MainHeading {
+	color: #ffffff;
+	font-size: 5rem;
+	font-family: 'Press Start 2P', cursive;
+	margin-top: 10px;
+	align-items: center;
+	justify-content: center;
+}
+.MainContainer {
+	color: #fff;
+	height: 100vh;
+	width: 100vw;
+	margin-top: 50px;
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
+
+.img_holder img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.PredictButton {
+	height: 70px;
+	width: 200px;
+	background-color: #36c8ec;
+	margin-top: 15px;
+}
+
+.image_Preview {
+	height: 350px;
+	width: 350px;
+	border: 1px solid #a0afe9;
+	border-radius: 12px;
+	overflow: hidden;
+	margin: 20px 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #b81111;
+	background: rgba(255, 255, 255, 0.596);
+}
+.Preview_Here {
+	display: none;
+	width: 100%;
+	object-fit: cover;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+}
